@@ -16,6 +16,7 @@
 #ifndef PY_LIEF_SAFE_STRING_H
 #define PY_LIEF_SAFE_STRING_H
 #include "typing.hpp"
+#include <string_view>
 
 struct safe_string_t : public nanobind::object {
   LIEF_PY_DEFAULT_CTOR(safe_string_t, nanobind::str);

@@ -38,8 +38,9 @@
 #include "LIEF/ELF/Segment.hpp"
 #include "LIEF/ELF/Symbol.hpp"
 #include "LIEF/ELF/SymbolVersion.hpp"
-#include "LIEF/ELF/SymbolVersionDefinition.hpp"  // IWYU pragma: keep
-#include "LIEF/ELF/SymbolVersionRequirement.hpp" // IWYU pragma: keep
+#include "LIEF/ELF/SymbolVersionAuxRequirement.hpp" // IWYU pragma: keep
+#include "LIEF/ELF/SymbolVersionDefinition.hpp"     // IWYU pragma: keep
+#include "LIEF/ELF/SymbolVersionRequirement.hpp"    // IWYU pragma: keep
 #include "LIEF/ELF/SysvHash.hpp"
 
 #include "pyErr.hpp"
