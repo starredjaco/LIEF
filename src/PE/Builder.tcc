@@ -33,8 +33,6 @@ namespace LIEF::PE {
 
 template<typename PE_T>
 ok_error_t Builder::build_optional_header(const OptionalHeader& optional_header) {
-  using pe_optional_header = typename PE_T::pe_optional_header;
-
   // Build optional header
   binary_->optional_header().sizeof_image(uint32_t(binary_->virtual_size()));
   binary_->optional_header().sizeof_headers(uint32_t{binary_->sizeof_headers()});
@@ -42,7 +40,7 @@ ok_error_t Builder::build_optional_header(const OptionalHeader& optional_header)
   vector_iostream pe_opt_hdr_strm;
   optional_header.serialize<PE_T>(pe_opt_hdr_strm);
 
-  assert(pe_opt_hdr_strm.size() == sizeof(pe_optional_header));
+  assert(pe_opt_hdr_strm.size() == sizeof(typename PE_T::pe_optional_header));
 
   const uint32_t address_next_header =
       binary_->dos_header().addressof_new_exeheader() + sizeof(details::pe_header);
