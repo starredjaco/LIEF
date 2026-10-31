@@ -152,7 +152,19 @@ void create<Section>(nb::module_& m) {
       .def_prop_rw(
           "reserved2", nb::overload_cast<>(&Section::reserved2, nb::const_),
           nb::overload_cast<uint32_t>(&Section::reserved2),
-          "According to the official ``loader.h`` file, this value is reserved for *offset* or *index*"_doc
+          R"doc(
+          According to the official ``loader.h`` file, this value is reserved
+          for *offset* or *index*.
+
+          For a :attr:`~.Section.TYPE.SYMBOL_STUBS` section, it returns the size
+          of the stub. For x86-64 binaries the stub is usually 6-bytes:
+
+          .. code-block:: text
+
+              jmp qword ptr [rip + disp32]  ; FF 25 followed by a 4-byte displacement
+
+          )doc"_doc
+          ""_doc
       )
 
       .def_prop_rw(
