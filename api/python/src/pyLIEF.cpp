@@ -208,6 +208,35 @@ void init_logger(nb::module_& m) {
     logging::reset();
     init_python_sink();
   });
+
+  nb::module_ named = logging.def_submodule("named");
+  named.def("get_level", &LIEF::logging::named::get_level, "name"_a,
+            "Get the logging level for the logger with the given name"_doc);
+
+  named.def("disable", &LIEF::logging::named::disable, "name"_a,
+            "Disable the logger with the given name"_doc);
+
+  named.def("enable", &LIEF::logging::named::enable, "name"_a,
+            "Enable the logger with the given name"_doc);
+
+  named.def("set_level", &LIEF::logging::named::set_level, "name"_a, "level"_a,
+            "Set the log level for the logger with the given name"_doc);
+
+  named.def(
+      "set_path", &LIEF::logging::named::set_path, "name"_a, "path"_a,
+      "Change the logger with the given name to a file-based logging and set its path"_doc
+  );
+
+  named.def(
+      "log", &LIEF::logging::named::log, "name"_a, "level"_a, "msg"_a,
+      "Log a message with the logger whose name is provided in the first parameter"_doc
+  );
+
+  named.def("reset", &LIEF::logging::named::reset, "name"_a,
+            "Reset the logger with the given name"_doc);
+
+  named.def("enable_debug", &LIEF::logging::named::enable_debug, "name"_a,
+            "Enable debug logging for the logger with the given name"_doc);
 }
 
 void init_hash(nb::module_& m) {
