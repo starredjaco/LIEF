@@ -57,6 +57,17 @@ class canbe_unique {
     return ptr_;
   }
 
+  std::unique_ptr<T> take_ownership() {
+    if (!owned_) {
+      return nullptr;
+    }
+
+    std::unique_ptr<T> result(ptr_);
+    ptr_ = nullptr;
+    owned_ = false;
+    return result;
+  }
+
   const T* get() const {
     return ptr_;
   }
