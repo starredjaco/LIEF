@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        arch: ['arm', 'arm64']
+        arch: ['armv7', 'arm64']
       fail-fast: false
     steps:
       - uses: actions/checkout@v7
@@ -41,7 +41,7 @@ jobs:
            -e LIEF_VERSION_ENV=$LIEF_VERSION_ENV \
            -v $GITHUB_WORKSPACE:/work            \
            -v $HOME/.ccache:/ccache              \
-           liefproject/android-${ARCH}           \
+           liefproject/android:${ARCH}           \
            bash /work/scripts/docker/android-sdk-${ARCH}
       - name: 'Upload Artifact'
         uses: actions/upload-artifact@v7
